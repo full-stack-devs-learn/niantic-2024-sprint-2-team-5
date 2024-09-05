@@ -9,7 +9,15 @@
 
 <div class="container mt-4">
     <div class="card mb-2" th:each="quiz:${quizzes}">
-        <div class="card-header" th:text="${quiz.title}"></div>
+        <div class="card-header">
+            <div class="card-header"></div>
+            <div class="card-header">
+                <a th:text ="${quiz.title}|}"></a>
+            <a th:href="@{|/quizzes/${quiz.quizId}/quiz-page|}"></a>
+            </div>
+
+
+        </div>
     </div>
 </div>
 

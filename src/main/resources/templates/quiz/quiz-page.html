@@ -4,6 +4,7 @@
 <div th:replace="fragments/head :: head"></div>
 
 <body>
+<script src="/js/quiz.js" ></script>
 
 <div th:replace="fragments/navigation :: nav"></div>
 
@@ -11,7 +12,7 @@
         <div class="card-header" th:text="${quiz.title}"></div>
     </div>
 
-    <button id="start-button" class="btn">
+    <button id="start-button" class="btn btn primary mt-4">
         Start Quiz
     </button>
 </div>
