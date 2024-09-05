@@ -25,7 +25,7 @@ public class QuizController {
         model.addAttribute("quiz", quiz);
         model.addAttribute("pageTitle", "Get Quiz by Id");
 
-        return "quizzes/index";
+        return "quiz-page";
     }
 }
 
