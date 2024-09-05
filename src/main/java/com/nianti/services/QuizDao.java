@@ -95,4 +95,37 @@ public class QuizDao
 
         return null;
     }
+    public void addQuiz(Quiz quiz) {
+        String sql = """
+                INSERT INTO quiz (quiz_id, quiz_title, is_live)
+                VALUES ( ?,?,?);
+                """;
+        jdbcTemplate.update(sql
+        ,quiz.getQuizId()
+        ,quiz.getTitle()
+        ,quiz.isLive());
+    }
+    public void updateQuiz(Quiz quiz)
+    {
+        String sql = """
+                UPDATE quiz
+                SET quiz_title = ?
+                    , is_live = ?
+                WHERE quiz_id = ?;
+                """;
+
+        jdbcTemplate.update(sql
+                ,quiz.getQuizId()
+                ,quiz.getTitle()
+                ,quiz.isLive());
+    }
+    public void deleteQuiz(int quizId)
+    {
+        String sql = """
+                DELETE FROM quiz
+                WHERE quiz_id = ?
+                """;
+
+        jdbcTemplate.update(sql, quizId);
+    }
 }
