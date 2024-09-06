@@ -1,12 +1,12 @@
 package com.nianti.services;
 
 import com.nianti.models.Quiz;
+import org.apache.commons.dbcp2.BasicDataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
 
-import javax.sql.DataSource;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,8 +16,13 @@ public class QuizDao
     private JdbcTemplate jdbcTemplate;
 
     @Autowired
-    public QuizDao(DataSource dataSource)
+    public QuizDao()
     {
+        BasicDataSource dataSource = new BasicDataSource();
+        dataSource.setUrl("jdbc:mysql://localhost:3306/trivio");
+        dataSource.setUsername("root");
+        dataSource.setPassword("P@ssw0rd");
+
         jdbcTemplate = new JdbcTemplate(dataSource);
     }
 

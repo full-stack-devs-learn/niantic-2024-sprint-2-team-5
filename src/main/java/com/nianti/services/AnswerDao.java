@@ -1,7 +1,7 @@
 package com.nianti.services;
 
 import com.nianti.models.Answer;
-import com.nianti.models.Question;
+import org.apache.commons.dbcp2.BasicDataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
@@ -16,7 +16,13 @@ public class AnswerDao {
     private JdbcTemplate jdbcTemplate;
 
     @Autowired
-    public AnswerDao(DataSource dataSource) {
+    public AnswerDao() {
+
+        BasicDataSource dataSource = new BasicDataSource();
+        dataSource.setUrl("jdbc:mysql://localhost:3306/trivio");
+        dataSource.setUsername("root");
+        dataSource.setPassword("P@ssw0rd");
+
         jdbcTemplate = new JdbcTemplate(dataSource);
     }
 
