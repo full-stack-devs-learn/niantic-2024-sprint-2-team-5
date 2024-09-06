@@ -1,0 +1,13 @@
+<div th:each="questions{questions}" xmlns:th="http://www.w3.org/1999/xhtml">
+    <div>
+        <h3 th:text:"${question.questionText}"></h3>
+        <div id ="answer">
+            <div th:each"answer:${answers}>
+            <button class="btn btn-seconadry answer-button"
+                    th:answer-id=:text="${answer.answerId}"
+                    th:answer-text=:text="${answer.answerText}"
+                    th:question-id=:text="${question.getQuestionId()
+            </button>
+        </div>
+        </div>
+    </div>

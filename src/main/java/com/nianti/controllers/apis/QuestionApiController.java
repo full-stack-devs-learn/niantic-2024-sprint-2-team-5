@@ -21,7 +21,7 @@ public class QuestionApiController {
             return questions;
         }
 
-        @GetMapping("/api/questions/pages")
+        @GetMapping("/api/questions/{questionId}")
         public int getQuestionPageCount()
         {
             int totalCount = questionsDao.getQuestionsCount();

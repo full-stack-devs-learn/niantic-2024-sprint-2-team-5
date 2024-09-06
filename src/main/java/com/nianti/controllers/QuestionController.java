@@ -1,5 +1,6 @@
 package com.nianti.controllers;
 
+import com.nianti.models.Question;
 import com.nianti.services.QuestionDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -24,16 +25,16 @@ public class QuestionController {
         return "question-page";
     }
 
-    @GetMapping("/questions/page/{page}")
-    public String getAllActors(Model model, @PathVariable int page)
+    @GetMapping("/questions/{questionId}")
+    public String getAllQuestions(Model model, @PathVariable int id)
     {
-        ArrayList<Actor> actors;
-        actors = actorsDao.getActors(page);
+        int questions;
+        questions = questionDao.getQuestionsCount();
 
         StringBuilder builder = new StringBuilder();
 
-        model.addAttribute("actors", actors);
-        return "/actors/fragments/actor-table-list";
+        model.addAttribute("questions", questions);
+        return "/questions/question-fragments";
     }
 
 }
