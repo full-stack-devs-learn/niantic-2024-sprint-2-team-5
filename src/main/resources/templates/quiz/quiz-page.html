@@ -10,6 +10,7 @@
 
 <div class="container mt-4">
     <div class="card-header" th:text="${quiz.title}">Quiz Title</div>
+    <input type="hidden" id="quiz-id" th:value="${quiz.quizId}">
 
     <div id="quiz-content" class="mt-4">
         <!-- Placeholder for the questions -->

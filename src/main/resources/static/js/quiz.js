@@ -1,28 +1,35 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-    const startButton = document.getElementById("start-button")
+        const startButton = document.getElementById("start-button")
+        document.getElementById("start-button").textContent = "Quiz started!"
+        document.getElementById("prev-button").textContent = "Prev"
+        document.getElementById("next-button").textContent = "Next"
     loadQuestion()
 
+    startButton.addEventListener('click', startQuiz);
 });
 
-function startQuiz(event) {
-    document.getElementById("start-button").textContent = "Quiz started!"
+function startQuiz(event)
+{
+const quizId = document.getElementById("quiz-id").value;
 
+    const url = `/questions/${quizId}`;
+     fetch(url).then(response => {
+            return response.text();
+        })
+        .then(data => {
+           document.getElementById('quiz-content').innerHTML = data;
+            //console.log(h3)
+        })
+        .catch(error => {
+            console.log(error);
+        })
 }
 
 function loadQuestion()
 {
-    const url = "/api/questions/${questionId}";
-     fetch(url).then(response => {
-            return response.json();
-        })
-            .then(data => {
-               const h3 = document.querySelector('h3').innerHTML = data.questionText;
-                console.log(h3)
-                })
-            })
-            .catch(error => {
-                console.log(error);
-            })
-    }
 }
+
+
+
+

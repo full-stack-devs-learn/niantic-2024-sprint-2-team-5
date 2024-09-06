@@ -40,8 +40,8 @@ public class AnswerDao {
         SqlRowSet row = jdbcTemplate.queryForRowSet(sql, questionId);
 
         while (row.next()) {
-            int answerId = row.getInt("answer-id");
-            String answerTest = row.getString("answer-text");
+            int answerId = row.getInt("answer_id");
+            String answerTest = row.getString("answer_text");
             boolean isCorrect = row.getBoolean("is_correct");
 
             Answer answer = new Answer(answerId, questionId, answerTest, isCorrect);

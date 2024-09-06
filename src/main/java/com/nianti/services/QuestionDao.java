@@ -24,6 +24,28 @@ public class QuestionDao {
         jdbcTemplate = new JdbcTemplate(dataSource);
     }
 
+    public Question getQuestionById(int questionId) {
+
+        String sql = """
+                SELECT question_id
+                         , quiz_id
+                         , question_number
+                         , question_text
+                FROM question
+                WHERE question_id =?;
+                """;
+        var row = jdbcTemplate.queryForRowSet(sql, questionId);
+
+        if (row.next()) {
+            int quizId = row.getInt("quiz_id");
+            int questionNumber = row.getInt("question_number");
+            String questionText = row.getString("question_text");
+
+            return  new Question(questionId, quizId, questionNumber, questionText);
+
+        }
+        return new Question();
+    }
     public List<Question> getQuestionByQuizId(int quizId) {
 
         ArrayList<Question> questions = new ArrayList<>();
@@ -49,18 +71,23 @@ public class QuestionDao {
         return questions;
     }
 
-    public int getQuestionsCount() {
-        String sql = """
-                       SELECT count (*) AS question_count
-                       FROM questions
-                       WHERE quiz_id =?;
-                """;
-        var row = jdbcTemplate.queryForRowSet(sql);
+    public int getQuestionsCount(int quizId) {
+        try {
+            String sql = """
+                           SELECT count(*) AS question_count
+                           FROM question
+                           WHERE quiz_id =?;
+                    """;
+            var row = jdbcTemplate.queryForRowSet(sql, quizId);
 
-        if (row.next()) {
-            return row.getInt("question_count");
+            if (row.next()) {
+                return row.getInt("question_count");
+            }
         }
-
+        catch(Exception e)
+        {
+            System.out.println(e.getMessage());
+        }
         return 0;
     }
 

@@ -1,6 +1,7 @@
 package com.nianti.models;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Question
 {
@@ -9,7 +10,7 @@ public class Question
     private int questionNumber;
     private String questionText;
 
-    private ArrayList<Answer> answers = new ArrayList<>();
+    private List<Answer> answers = new ArrayList<>();
 
     public Question()
     {
@@ -63,12 +64,12 @@ public class Question
         this.questionText = questionText;
     }
 
-    public ArrayList<Answer> getAnswers()
+    public List<Answer> getAnswers()
     {
         return answers;
     }
 
-    public void setAnswers(ArrayList<Answer> answers)
+    public void setAnswers(List<Answer> answers)
     {
         this.answers = answers;
     }
