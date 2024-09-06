@@ -7,6 +7,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import java.util.ArrayList;
+
 @Controller
 public class QuestionController {
     @Autowired
@@ -21,4 +23,17 @@ public class QuestionController {
 
         return "question-page";
     }
+
+    @GetMapping("/questions/page/{page}")
+    public String getAllActors(Model model, @PathVariable int page)
+    {
+        ArrayList<Actor> actors;
+        actors = actorsDao.getActors(page);
+
+        StringBuilder builder = new StringBuilder();
+
+        model.addAttribute("actors", actors);
+        return "/actors/fragments/actor-table-list";
+    }
+
 }
