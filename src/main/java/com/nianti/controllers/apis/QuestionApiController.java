@@ -13,26 +13,13 @@ public class QuestionApiController {
         private QuestionDao questionsDao = new QuestionDao();
 
 
-        @GetMapping("/api/questions/page/{page}")
-        public ArrayList<Question> getAllActors(@PathVariable int page)
-        {
-            ArrayList<Question> questions;
-            questions = questionsDao.getQuestions(page);
-            return questions;
-        }
-
-        @GetMapping("/api/questions/{questionId}")
-        public int getQuestionPageCount()
-        {
-            int totalCount = questionsDao.getQuestionsCount();
-            int pages = totalCount / 10;
-            if(totalCount % 10 > 0) pages ++;
-
-            return pages;
-        }
-//api/questions/quizzes/quizid
-    //no page total count return array list question ids
-
+//        @GetMapping("/api/questions/page/{page}")
+//        public ArrayList<Question> getQuestion(@PathVariable int quizId)
+//        {
+//            ArrayList<Question> questions;
+//            questions = questionsDao.getQuestionByQuizId(quizId);
+//            return questions;
+//        }
     }
 
 
