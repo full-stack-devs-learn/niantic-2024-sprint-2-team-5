@@ -1,12 +1,18 @@
+
+
+
 document.addEventListener("DOMContentLoaded", () => {
 
+        let currentQuestionIndex = 0
         const startButton = document.getElementById("start-button")
         document.getElementById("start-button").textContent = "Quiz started!"
-        document.getElementById("prev-button").textContent = "Prev"
-        document.getElementById("next-button").textContent = "Next"
+        const previousButton = document.getElementById("prev-button")
+        const nextButton = document.getElementById("next-button")
+        
     loadQuestion()
 
     startButton.addEventListener('click', startQuiz);
+    nextButton.addEventListener('click, nextPage')
 });
 
 function startQuiz(event)
@@ -30,6 +36,9 @@ function loadQuestion()
 {
 }
 
+function nextPage(event) {
+    const quizId = document.getElementById("quiz-id").currentQuestionIndex++;
+}
 
 
 
