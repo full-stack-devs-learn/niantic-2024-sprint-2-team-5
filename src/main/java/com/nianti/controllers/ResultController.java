@@ -1,6 +1,8 @@
 package com.nianti.controllers;
 
+import com.nianti.models.Answer;
 import com.nianti.models.Question;
+import com.nianti.services.AnswerDao;
 import com.nianti.services.QuestionDao;
 import com.nianti.services.QuizDao;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,45 +19,26 @@ import java.util.List;
 public class ResultController {
 
     @Autowired
-    private QuizDao quizDao;
-
-    @Autowired
     private QuestionDao questionDao;
 
     @Autowired
-    private QuizController quizController;
+    private AnswerDao answerDao;
 
-    @GetMapping("/quizzes/{quizId}/result")
-    public String getResultPage(@PathVariable int quizId, Model model) {
+    @GetMapping("/quizzes/{quizId}/correct-answers")
+    public String getCorrectAnswers(@PathVariable int quizId, Model model) {
+        List<Question> questions = questionDao.getQuestionByQuizId(quizId);
 
-        var quiz = quizDao.getQuizById(quizId);
-
-        if (quiz == null) {
-            return "error/quiz-not-found";
+        for (Question question : questions) {
+            List<Answer> answers = answerDao.getAnswersByQuestionId(question.getQuestionId());
+            for (Answer answer : answers) {
+                if (answer.isCorrect()) {
+                    question.getAnswers().add(answer);
+                }
+            }
         }
 
-        model.addAttribute("quiz", quiz);
-        model.addAttribute("pageTitle", "Quiz Results");
-
-        return "quiz/result-page";
+        model.addAttribute("questions", questions);
+        model.addAttribute("result", "results");
+        return "/questions/question-fragments";
     }
-
-    @PostMapping("/quizzes/{quizId}/submit")
-    public String submitQuiz(@PathVariable int quizId, @RequestBody List<Integer> userAnswers, Model model) {
-
-        // calculate the score using QuizController's method
-        int score = quizController.calculateScore(userAnswers, quizId);
-
-        // get the total question
-        List<Question> questions = questionDao.getQuestionByQuizId(quizId);
-        int totalQuestions = questions != null ? questions.size() : 0;
-
-
-        model.addAttribute("score", score);
-        model.addAttribute("totalQuestions", totalQuestions);
-        model.addAttribute("quizId", quizId);
-
-        return "redirect:/quizzes/" + quizId + "/result";
-    }
-
 }

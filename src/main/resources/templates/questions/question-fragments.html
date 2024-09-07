@@ -1,14 +1,26 @@
+<div th:fragment="question-and-answer">
+    <!-- Check if question is null -->
+    <h3 th:if="${question != null}" th:text="${question.questionText}"></h3>
 
-    <div>
-        <h3 th:text="${question.questionText}"></h3>
-        <div id="answer">
-            <div th:each="answer : ${question.answers}">
-                <button class="btn btn-secondary answer-button"
-                        th:data-answer-id="${answer.answerId}"
-                        th:data-answer-text="${answer.answerText}"
-                        th:data-question-id="${question.getQuestionId()}"
-                        th:text="${answer.answerText}">
-                </button>
-            </div>
+
+    <input type="hidden" id="question-count" th:value="${questionCount}" />
+
+    <div id="answer" th:if="${question != null}">
+        <div th:each="answer : ${question.answers}">
+
+            <label th:if="${not #strings.equals(result, 'results')}">
+                <input type="radio" class="answer-radio"
+                       name="question-${question.questionId}"
+                       th:value="${answer.answerId}"
+                       th:data-question-id="${question.questionId}"
+                       th:data-is-correct="${answer.isCorrect}" />
+                <span th:text="${answer.answerText}"></span>
+            </label>
+
+
+            <span th:if="${#strings.equals(result, 'results')}">
+                <b th:if="${answer.isCorrect}" th:text="${answer.answerText}"></b>
+            </span>
         </div>
     </div>
+</div>

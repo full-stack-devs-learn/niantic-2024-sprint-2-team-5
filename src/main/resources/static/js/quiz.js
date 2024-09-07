@@ -1,6 +1,3 @@
-
-
-
 document.addEventListener("DOMContentLoaded", () => {
 
         let currentQuestionIndex = 0
