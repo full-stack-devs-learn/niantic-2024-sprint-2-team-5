@@ -23,5 +23,6 @@ public class QuizController {
 
         return "quiz/quiz-page";
     }
+
 }
 
