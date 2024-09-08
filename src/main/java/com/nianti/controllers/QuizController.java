@@ -33,7 +33,7 @@ public class QuizController {
         model.addAttribute("quizzes", quizzes);
         model.addAttribute("pageTitle", "All Quizzes");
 
-        return "/quizzes/index";
+        return "quiz/index";
     }
 
     @GetMapping("quizzes/{quizId}")
