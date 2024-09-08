@@ -50,14 +50,16 @@ public class QuestionDao {
 
         ArrayList<Question> questions = new ArrayList<>();
         String sql = """
-                SELECT question_id
-                         , quiz_id
-                         , question_number
-                         , question_text
-                FROM question
-                WHERE quiz_id =?;
-                """;
+            SELECT question_id
+                 , quiz_id
+                 , question_number
+                 , question_text
+            FROM question
+            WHERE quiz_id = ?
+            ORDER BY question_number ASC;
+            """;
         var row = jdbcTemplate.queryForRowSet(sql, quizId);
+
 
         while (row.next()) {
             int questionId = row.getInt("question_id");
@@ -65,11 +67,12 @@ public class QuestionDao {
             String questionText = row.getString("question_text");
 
             Question question = new Question(questionId, quizId, questionNumber, questionText);
-
             questions.add(question);
         }
+
         return questions;
     }
+
 
     public int getQuestionsCount(int quizId) {
         try {

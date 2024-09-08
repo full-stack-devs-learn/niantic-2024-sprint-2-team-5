@@ -1,39 +1,27 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" >
-<head th:replace="fragments/head :: head"></head>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<div th:replace="fragments/head :: head"></div>
 
 <body>
-<nav th:replace="fragments/navigation :: nav"></nav>
-<main class="container mt-4">
-    <div class="d-flex justify-content-between align-items-center mb-2">
-        <h1>All Quizzes</h1>
-        <a th:href="@{/quizzes/add}" class="btn btn-primary">+ Add new quiz</a>
+
+<div th:replace="fragments/navigation :: nav"></div>
+
+<div class="container mt-4">
+
+
+
+    <div class="d-flex my-3 gap-3">
+        <div class="card" th:each="quiz:${quizzes}" style="width: 18rem;">
+            <div class="card-header" th:text="${quiz.title}"></div>
+            <div class="card-body">
+                <a th:href="@{/quizzes/add}" class="btn btn-primary">Add Quiz</a>
+                <a th:href="@{|/quizzes/${quiz.quizId}/edit|}" class="btn btn-secondary">Edit</a>
+                <a th:href="@{|/quizzes/${quiz.quizId}/delete|}" class="btn btn-danger">Delete</a>
+            </div>
+        </div>
     </div>
-    <table class="table table-hover">
-        <thead>
-        <tr>
-            <th>Quiz Id</th>
-            <th>Quiz Title</th>
-            <th>Actions</th>
-        </tr>
-        </thead>
+</div>
 
-        <tbody>
-
-        <tr class="table-dark" th:each="quiz : ${quizzes}">
-            <td th:text="${quiz.quizId}"></td>
-            <td th:text="${quiz.title}"></td>
-            <td>
-
-                <a th:href="@{/quizzes/{id}/edit(id=${quiz.quizId})}" class="btn btn-primary">Edit</a>
-                <a th:href ="@{/quizzes/{id}/delete(id=${quiz.quizId})}" class="btn btn-secondary">Delete</a>
-                <a th:href="@{|/quizzes/${quiz.quizId}/add|}" class="btn btn-success">Add To Home Page</a>
-            </td>
-
-        </tr>
-        </tbody>
-     </table>
-
-</main>
 </body>
 </html>

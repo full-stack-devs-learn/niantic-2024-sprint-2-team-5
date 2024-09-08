@@ -20,16 +20,6 @@ public class QuestionController {
     @Autowired
     private AnswerDao answerDao;
 
-//    @GetMapping("questions/{quizId}")
-//    public String getQuestionByQuizId(Model model, @PathVariable int quizId)
-//    {
-//        var question = questionDao.getQuestionByQuizId(quizId);
-//        model.addAttribute("question", question);
-//        model.addAttribute("pageTitle", "Get Question by quiz id");
-//
-//        return "question-page";
-//    }
-
     @GetMapping("/questions/{questionId}")
     public String getAllQuestions(Model model, @PathVariable int questionId)
     {
@@ -48,10 +38,6 @@ public class QuestionController {
 
 
         model.addAttribute("questionCount", questions.size());
-
-        if (index >= questions.size()) {
-            return "quiz-end";
-        }
 
         Question question = questions.get(index);
         List<Answer> answers = answerDao.getAnswersByQuestionId(question.getQuestionId());

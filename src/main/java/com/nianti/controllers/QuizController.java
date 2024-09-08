@@ -1,17 +1,16 @@
 package com.nianti.controllers;
 
-import com.nianti.models.Answer;
-import com.nianti.models.Question;
 import com.nianti.models.Quiz;
 import com.nianti.services.AnswerDao;
 import com.nianti.services.QuestionDao;
 import com.nianti.services.QuizDao;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -36,64 +35,86 @@ public class QuizController {
         return "quiz/index";
     }
 
-    @GetMapping("quizzes/{quizId}")
+    @GetMapping("/quizzes/{quizId}")
     public String getQuizById(Model model, @PathVariable int quizId) {
+
         var quiz = quizDao.getQuizById(quizId);
+
+        int totalQuestions = questionDao.getQuestionsCount(quizId);
+
         model.addAttribute("quiz", quiz);
+        model.addAttribute("totalQuestions", totalQuestions);
         model.addAttribute("pageTitle", "Get Quiz by Id");
 
         return "quiz/quiz-page";
     }
 
-    @GetMapping("/quizzes/{id}/add")
-    public String addQuiz(Model model) {
+    @GetMapping("/quizzes/add")
+    public String addQuiz(Model model)
+    {
         model.addAttribute("quiz", new Quiz());
         model.addAttribute("action", "add");
-        model.addAttribute("pageTitle", "Add Quiz");
 
-        return "quiz/index";
+        return "quiz/add-edit";
     }
 
-    @PostMapping("/quizzes/{id}/add")
-    public String addQuiz(Model model, @ModelAttribute("quiz") Quiz quiz) {
+    @PostMapping("/quizzes/add")
+    public String addQuiz(Model model, @Valid @ModelAttribute("quiz") Quiz quiz, BindingResult result)
+    {
+        if(result.hasErrors())
+        {
+            model.addAttribute("isInvalid", true);
+            model.addAttribute("action", "add");
+            return "quiz/add-edit";
+        }
+
         quizDao.addQuiz(quiz);
-        model.addAttribute("quiz", quiz);
-
-        return "redirect:/quizzes/index";
+        return "redirect:/quizzes";
     }
 
-    @GetMapping("quizzes/{id}/edit")
-    public String editQuiz(Model model, @PathVariable("id") int id) {
-        Quiz quiz = quizDao.getQuizById(id);
-        model.addAttribute("quiz", quiz);
-        // model.addAttribute("question", question);
-        // model.addAttribute("answer", answer)
 
-        return "/quiz/index";
+    @GetMapping("/quizzes/{quizId}/edit")
+    public String editQuiz(Model model, @PathVariable int quizId)
+    {
+        Quiz quiz = quizDao.getQuizById(quizId);
+        model.addAttribute("quiz", quiz);
+        model.addAttribute("action", "edit");
+        return "quiz/add-edit";
     }
 
-    @PostMapping("quizzes/{id}/edit")
-    public String updateQuiz(@ModelAttribute("quiz") Quiz quiz, @PathVariable("id") int id) {
-        quiz.setQuizId(id);
+    @PostMapping("/quizzes/{quizId}/edit")
+    public String editQuiz(Model model, @Valid @ModelAttribute("quiz") Quiz quiz, BindingResult result, @PathVariable int quizId)
+    {
+        if(result.hasErrors())
+        {
+            model.addAttribute("isInvalid", true);
+            model.addAttribute("action", "edit");
+            return "quiz/add-edit";
+        }
+
+        quiz.setQuizId(quizId);
         quizDao.updateQuiz(quiz);
-
-        return "redirect: quizzes/index";
+        return "redirect:/quizzes";
     }
+    @GetMapping("/quizzes/{quizId}/delete")
+    public String deleteQuiz(Model model, @PathVariable int quizId)
+    {
+        var quiz = quizDao.getQuizById(quizId);
 
-    @GetMapping("quizzes/{id}/delete")
-    public String deleteQuiz(Model model, @PathVariable("id") int id) {
-        Quiz quiz = quizDao.getQuizById(id);
+        if (quiz == null)
+        {
+            return "404";
+        }
+
         model.addAttribute("quiz", quiz);
-
-        return "/quiz/index";
+        return "quiz/delete";
     }
 
-    @PostMapping("quizzes/{id}/delete")
-    public String updatedQuiz(@ModelAttribute("quiz") Quiz quiz, @PathVariable("id") int id) {
-        quiz.setQuizId(id);
-        quizDao.updateQuiz(quiz);
-
-        return "redirect: quizzes/";
+    @PostMapping("/quizzes/{quizId}/delete")
+    public String deleteQuiz(@PathVariable int quizId)
+    {
+        quizDao.deleteQuiz(quizId);
+        return "redirect:/quizzes";
     }
 }
 

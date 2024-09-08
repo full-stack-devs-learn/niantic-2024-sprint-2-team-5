@@ -1,28 +1,34 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 
-<div th:replace="fragments/head :: head"></div>
+<head>
+    <div th:replace="fragments/head :: head"></div>
+</head>
 
 <body>
-
+<script src="/js/add-quiz.js"></script>
 <div th:replace="fragments/navigation :: nav"></div>
-<main class="container mt-4">
-    <h1 th:if ="${action} == 'add'"> Add Quiz </h1>
-    <h1 th:if ="${action} == 'edit'"> Edit Quiz </h1>
 
-    <form method = "post" th:object= "${quiz}" action ="#" >
-        <div class ="form-floating mb-3">
-            <input class="form-control" type="text" th:field ="*{title}">
-            <label th:for="*{title}">Quiz Title</label>
+<div class="container mt-4">
+    <div>
+        <h1 th:if="${action} == 'add'">Add Quiz</h1>
+        <h1 th:if="${action} == 'edit'">Edit Quiz</h1>
+    </div>
+    <form id="add-quiz" method="post" th:object="${quiz}" novalidate th:class="${isInvalid} ? 'was-validated' : ''">
+        <div class="row mb-3">
+            <label th:for="*{title}" class="col-sm-2 col-form-label">Quiz Title</label>
+            <input th:field="*{title}" type="text" class="col-sm-10" id="title" required>
+            <div class="invalid-feedback">Enter a quiz title.</div>
         </div>
 
-        <div class ="form-floating mb-3">
-            <input class="form-control" type="text" th:field ="*{description}">
-            <label th:for="*{description}">Description</label>
+        <div class="form-check mb-4">
+            <input class="form-check-input" th:checked="*{live}" type="checkbox" th:field="*{live}">
+            <label class="form-check-label" th:for="*{live}">Mark quiz as live?</label>
         </div>
 
-        <input class ="btn btn-success" type = "Submit" value = "Save">
+        <button type="submit" value="Save" class="btn btn-primary">Submit</button>
     </form>
-</main>
+</div>
+
 </body>
 </html>

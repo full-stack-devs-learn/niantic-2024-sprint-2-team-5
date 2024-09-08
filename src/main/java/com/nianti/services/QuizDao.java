@@ -110,19 +110,17 @@ public class QuizDao
         ,quiz.getTitle()
         ,quiz.isLive());
     }
-    public void updateQuiz(Quiz quiz)
-    {
+    public void updateQuiz(Quiz quiz) {
         String sql = """
-                UPDATE quiz
-                SET quiz_title = ?
-                    , is_live = ?
-                WHERE quiz_id = ?;
-                """;
-
+            UPDATE quiz
+            SET quiz_title = ?
+                , is_live = ?
+            WHERE quiz_id = ?;
+            """;
         jdbcTemplate.update(sql
-                ,quiz.getQuizId()
-                ,quiz.getTitle()
-                ,quiz.isLive());
+                    ,quiz.getTitle()
+                    ,quiz.isLive() ? 1 : 0
+                    ,quiz.getQuizId());
     }
     public void deleteQuiz(int quizId)
     {
