@@ -1,14 +1,16 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" >
-<head th:replace="fragments/head :: head"></head>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<div th:replace="fragments/head :: head"></div>
 
 <body>
-<nav th:replace="fragments/nav :: nav"></nav>
+
+<div th:replace="fragments/navigation :: nav"></div>
 <main class="container mt-4">
     <h1 th:if ="${action} == 'add'"> Add Quiz </h1>
     <h1 th:if ="${action} == 'edit'"> Edit Quiz </h1>
 
-    <form action ="#" th:object= "${quiz}" method = "post">
+    <form method = "post" th:object= "${quiz}" action ="#" >
         <div class ="form-floating mb-3">
             <input class="form-control" type="text" th:field ="*{title}">
             <label th:for="*{title}">Quiz Title</label>

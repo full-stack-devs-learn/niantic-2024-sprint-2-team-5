@@ -9,7 +9,7 @@
         <h1>All Quizzes</h1>
         <a th:href="@{/quizzes/add}" class="btn btn-primary">+ Add new quiz</a>
     </div>
-    <table class="table table-striped">
+    <table class="table table-hover">
         <thead>
         <tr>
             <th>Quiz Id</th>
@@ -17,17 +17,23 @@
             <th>Actions</th>
         </tr>
         </thead>
+
         <tbody>
-        <tr th:each="quiz:${quizzes}">
+
+        <tr class="table-dark" th:each="quiz:${quizzes}">
             <td th:text="${quiz.quizId}"></td>
             <td th:text="${quiz.title}"></td>
             <td>
-                <a th:href="@{|/quizzes/${quiz.quizId}/edit|}" class="btn btn-warning">Edit</a>
+
+                <a th:href="@{|/quizzes/${quiz.quizId}/edit|}" class="btn btn-light">Edit</a>
                 <a th:href="@{|/quizzes/${quiz.quizId}/delete|}" class="btn btn-danger">Delete</a>
+                <a th:href="@{|/quizzes/${quiz.quizId}/add|}" class="btn btn-success">Add To Home Page</a>
             </td>
+
         </tr>
         </tbody>
-    </table>
+     </table>
+
 </main>
 </body>
 </html>
