@@ -2,17 +2,16 @@ package com.nianti.controllers;
 
 import com.nianti.models.Answer;
 import com.nianti.models.Question;
+import com.nianti.models.Quiz;
 import com.nianti.services.AnswerDao;
 import com.nianti.services.QuestionDao;
 import com.nianti.services.QuizDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -26,6 +25,17 @@ public class QuizController {
     @Autowired
     private AnswerDao answerDao;
 
+
+    @GetMapping("/quizzes")
+
+    public String getAllQuizzes(Model model) {
+        List<Quiz> quizzes = quizDao.getAllQuizzes();
+        model.addAttribute("quizzes", quizzes);
+        model.addAttribute("pageTitle", "All Quizzes");
+
+        return "/quizzes/index";
+    }
+
     @GetMapping("quizzes/{quizId}")
     public String getQuizById(Model model, @PathVariable int quizId) {
         var quiz = quizDao.getQuizById(quizId);
@@ -34,6 +44,24 @@ public class QuizController {
 
         return "quiz/quiz-page";
     }
+
+    @GetMapping("/quizzes/add")
+    public String addQuiz(Model model) {
+        model.addAttribute("quiz", new Quiz());
+        model.addAttribute("action", "add");
+        model.addAttribute("pageTitle", "Add Quiz");
+
+        return "quiz/add_edit";
+    }
+
+    @PostMapping("/quizzes/add")
+    public String addQuiz(Model model, @ModelAttribute("vendor") Quiz quiz) {
+        quizDao.addQuiz(quiz);
+        model.addAttribute("quiz", quiz);
+
+        return "redirect:/quizzes";
+    }
+
 }
 
 
