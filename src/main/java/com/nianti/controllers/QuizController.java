@@ -45,40 +45,55 @@ public class QuizController {
         return "quiz/quiz-page";
     }
 
-    @GetMapping("/quizzes/add")
+    @GetMapping("/quizzes/{id}/add")
     public String addQuiz(Model model) {
         model.addAttribute("quiz", new Quiz());
         model.addAttribute("action", "add");
         model.addAttribute("pageTitle", "Add Quiz");
 
-        return "quiz/add_edit";
+        return "quiz/index";
     }
 
-    @PostMapping("/quizzes/add")
+    @PostMapping("/quizzes/{id}/add")
     public String addQuiz(Model model, @ModelAttribute("quiz") Quiz quiz) {
         quizDao.addQuiz(quiz);
         model.addAttribute("quiz", quiz);
 
-        return "redirect:/quizzes";
+        return "redirect:/quizzes/index";
     }
-    @GetMapping("quizzes/edit")
-    public String editQuiz(Model model, @PathVariable int id)
-    {
+
+    @GetMapping("quizzes/{id}/edit")
+    public String editQuiz(Model model, @PathVariable("id") int id) {
         Quiz quiz = quizDao.getQuizById(id);
         model.addAttribute("quiz", quiz);
-       // model.addAttribute("question", question);
-       // model.addAttribute("answer", answer)
+        // model.addAttribute("question", question);
+        // model.addAttribute("answer", answer)
 
-        return "quiz/add_edit";
+        return "/quiz/index";
     }
 
-    @PostMapping("quizzes/edit")
-    public String editTransaction(@ModelAttribute("quiz") Quiz quiz, @PathVariable int id)
-    {
+    @PostMapping("quizzes/{id}/edit")
+    public String updateQuiz(@ModelAttribute("quiz") Quiz quiz, @PathVariable("id") int id) {
         quiz.setQuizId(id);
         quizDao.updateQuiz(quiz);
 
-        return "redirect: quiz/index";
+        return "redirect: quizzes/index";
+    }
+
+    @GetMapping("quizzes/{id}/delete")
+    public String deleteQuiz(Model model, @PathVariable("id") int id) {
+        Quiz quiz = quizDao.getQuizById(id);
+        model.addAttribute("quiz", quiz);
+
+        return "/quiz/index";
+    }
+
+    @PostMapping("quizzes/{id}/delete")
+    public String updatedQuiz(@ModelAttribute("quiz") Quiz quiz, @PathVariable("id") int id) {
+        quiz.setQuizId(id);
+        quizDao.updateQuiz(quiz);
+
+        return "redirect: quizzes/";
     }
 }
 

@@ -20,13 +20,13 @@
 
         <tbody>
 
-        <tr class="table-dark" th:each="quiz:${quizzes}">
+        <tr class="table-dark" th:each="quiz : ${quizzes}">
             <td th:text="${quiz.quizId}"></td>
             <td th:text="${quiz.title}"></td>
             <td>
 
-                <a th:href="@{|/quizzes/${quiz.quizId}/edit|}" class="btn btn-light">Edit</a>
-                <a th:href="@{|/quizzes/${quiz.quizId}/delete|}" class="btn btn-danger">Delete</a>
+                <a th:href="@{/quizzes/{id}/edit(id=${quiz.quizId})}" class="btn btn-primary">Edit</a>
+                <a th:href ="@{/quizzes/{id}/delete(id=${quiz.quizId})}" class="btn btn-secondary">Delete</a>
                 <a th:href="@{|/quizzes/${quiz.quizId}/add|}" class="btn btn-success">Add To Home Page</a>
             </td>
 
