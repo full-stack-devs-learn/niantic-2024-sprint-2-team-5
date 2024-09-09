@@ -32,7 +32,7 @@ The home page displays a list of available quizzes that users can take. Simply c
 ### 2. Quiz Start Page
 Once a user clicks on a quiz from the home page, they are taken to the quiz start page. Here, you can see the total number of questions for the selected quiz and begin the quiz by pressing the **Start Quiz** button.
 
-![Quiz Home](images/quiz-start.png)
+![Quiz Start](images/quiz-start.png)
 
 **How to use:**
 - Review the total number of questions before starting.
@@ -41,7 +41,7 @@ Once a user clicks on a quiz from the home page, they are taken to the quiz star
 ### 3. Quiz Settings Page
 The **Quiz Settings** page allows you to manage quizzes by adding, editing, deleting, or viewing questions within each quiz. This page provides you with buttons to control the content of each quiz.
 
-![Quiz Home](images/quiz-setting.png)
+![Quiz Setting](images/quiz-setting.png)
 
 **How to use:**
 - **Add**: Create new quiz questions.
@@ -91,7 +91,7 @@ when we weren't programming together. When we met again we would explain the cod
 
 ## Challenge 2
 
-#### Dureti
+### Dureti
 
 - **Problem**:  
   The problem was ensuring that the user could see the correct answers immediately after submitting a quiz. We needed a way to retrieve and display these answers dynamically without having to refresh the page or load the entire page again.
@@ -102,13 +102,13 @@ when we weren't programming together. When we met again we would explain the cod
 - **Final Solution**:  
   The solution was a seamless integration between the backend and frontend. The backend retrieved the correct answers, while the frontend handled user interaction and updated the page with the results. This allowed users to immediately see their results and the correct answers without any page reloads, providing a better overall experience.
 
-## Code Block Highlight
+# Code Block Highlight
 
-### Hannah
+## Hannah
 ![img_3.png](img_3.png)
 ![img_4.png](img_4.png)
 
-### Dureti 
+## Dureti 
 
 ![Dureti Code](images/Dureti-code.png)
 
@@ -121,7 +121,7 @@ This piece of code not only improves the user experience by reducing load times 
 
 ## Retrospective 
 
-##### Hannah
+### Hannah
 **Lessons learned**:  
 - I learned to break big tasks into smaller, manageable ones. I also realized the importance of checking my syntax frequently for errors, as I often encountered issues like misspellings or misplaced curly brackets.
 
@@ -135,17 +135,18 @@ This piece of code not only improves the user experience by reducing load times 
 - With more time, I would have added features like the ability to add questions/answers to quizzes, a popup to indicate correct/incorrect answers, and a "previous" button so users could change their answers.  
 - I would also have liked to explore website design, possibly animating elements with JavaScript. Although Bootswatch was convenient, designing the site from scratch would have been fun.
 
-##### Dureti 
+### Dureti 
 
-## Lessons Learned from the Project
+**Lessons learned**:  
 
-### What did I learn from the project?
 I learned how to effectively integrate frontend and backend components to create a dynamic and responsive quiz application. The project helped me improve my understanding of handling user interactions asynchronously using JavaScript and how to structure backend logic to process user data. It also reinforced the importance of seamless user experience and clean code structure.
 
-### What would I do differently?
-If I were to approach this project again, I would focus more on scalability and modularity from the start. For example, I would create a more robust REST API structure instead of relying on traditional MVC. This would allow for more flexibility, especially if I later decide to implement a single-page application (SPA) framework like React or Vue.js.
+**What would you do differently**:  
 
-### What would I do the same?
+I would avoid spending too much time trying to solve problems in overly complex or alternative ways. Instead, I would focus on using proven, straightforward solutions from the start to ensure steady progress. This would help prevent getting stuck on unnecessary complexities and allow for more focus on refining the core functionality.
+
+**What would you do the same**:  
+
 I would keep the approach of using modern JavaScript for handling asynchronous requests and the integration of backend services like the current implementation. The separation of concerns between the backend fetching logic and frontend user interaction worked well and ensured a smooth user experience.
 
 ### If I had more time, what else would I add to the project?
@@ -162,7 +163,7 @@ With more time, I would implement a full quiz management system. Here are the ke
 
 - **Show Results with Correct Answers**:  
   After users finish taking the quiz, I would show all the questions along with the correct answers and the user’s answers, allowing them to review their performance in detail.
-  
+
 **Interactive Feedback After Each Question**:  
   Instead of only showing the results at the end of the quiz, I would add immediate feedback after each question (correct/incorrect answer, explanation, etc.) to make the learning process more engaging.
 
