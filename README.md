@@ -22,17 +22,21 @@ This project is a result of a two-day pair programming collaboration between Dur
 
 ## Development Process
 
+We used a Trello board to keep track of the tasks we needed to accomplish. This helped us to break down the project into smaller tasks.
+![img.png](img.png)
 
-  
-## Diagram
 
-
+### Trivio Database Diagram
+![img_2.png](img_2.png)
 ## Challenges
 
 ### Challenge 1
 - **Problem**: 
+- Connecting the buttons to link to the right page
 - **Approach**: 
+- Looking at demos and researching pathing
 - **Final Solution**: 
+- Trail and error, researching pathing
 
 ### Challenge 2
 - **Problem**: 
@@ -40,10 +44,14 @@ This project is a result of a two-day pair programming collaboration between Dur
 - **Final Solution**: 
 
 ## Code Block Highlight
+## Hannah
+![img_1.png](img_1.png)
 
 
-## Retrospective
+## Retrospective 
+##### Hannah
 - **Lessons learned**: 
+- 
 - **What would you do differently**: 
 - **What would you do the same**: 
 - **Future improvements if more time was available**:
