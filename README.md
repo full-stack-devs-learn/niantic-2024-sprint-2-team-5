@@ -72,9 +72,9 @@ when we weren't programming together. When we met again we would explain the cod
 
 ![Database ER Diagram](images/Database-ER-diagram.png)
 
-## Challenges
+# Challenges
 
-### Challenge 1
+## Challenge 1
 
 #### Hannah
 
