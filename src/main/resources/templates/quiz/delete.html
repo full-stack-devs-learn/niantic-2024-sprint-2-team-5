@@ -12,16 +12,11 @@
         <h1>Delete Quiz</h1>
         <h2>You are deleting the following quiz!</h2>
     </div>
-    <table class="table">
-        <tr>
-            <th>Quiz Id</th>
-            <td th:text="${quiz.quizId}"></td>
-        </tr>
-        <tr>
-            <th>Quiz Title</th>
-            <td th:text="${quiz.title}"></td>
-        </tr>
-    </table>
+
+    <div>
+        <p>Quiz Id: <span th:text="${quiz.quizId}"></span></p>
+        <p>Quiz Title: <span th:text="${quiz.title}"></span></p>
+    </div>
 
     <form method="post">
         <button type="submit" value="delete" class="btn btn-danger">Delete</button>

@@ -1,6 +1,5 @@
 package com.nianti.controllers;
 
-import com.nianti.models.Question;
 import com.nianti.models.Quiz;
 import com.nianti.services.AnswerDao;
 import com.nianti.services.QuestionDao;
@@ -48,6 +47,24 @@ public class QuizController {
         model.addAttribute("pageTitle", "Get Quiz by Id");
 
         return "quiz/quiz-page";
+    }
+
+    @GetMapping("/quizzes/{quizId}/details")
+    public String getQuizDetails(Model model, @PathVariable int quizId)
+    {
+        var quiz = quizDao.getQuizById(quizId);
+
+        if(quiz == null)
+        {
+            return "404";
+        }
+
+        var questions = questionDao.getQuestionByQuizId(quizId);
+
+        model.addAttribute("quiz", quiz);
+        model.addAttribute("questions", questions);
+
+        return "quiz/details";
     }
 
     @GetMapping("/quizzes/add")
@@ -117,9 +134,4 @@ public class QuizController {
         quizDao.deleteQuiz(quizId);
         return "redirect:/quizzes";
     }
-
 }
-
-
-
-

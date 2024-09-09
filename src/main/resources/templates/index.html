@@ -8,12 +8,12 @@
 <div th:replace="fragments/navigation :: nav"></div>
 
 <div class="container mt-4">
-    <div class="card mb-2" th:each="quiz : ${quizzes}">
-
-        <!-- Only show quizzes where isLive is true -->
+    <h1>Available Quizzes</h1>
+    <br>
+    <div th:each="quiz : ${quizzes}">
         <div th:if="${quiz.isLive}">
-            <div class="card-header">
-                <a th:text="${quiz.title}" th:href="@{/quizzes/{quizId}(quizId=${quiz.quizId})}"></a>
+            <div>
+                <h2><a th:text="${quiz.title}" th:href="@{/quizzes/{quizId}(quizId=${quiz.quizId})}"></a></h2>
             </div>
         </div>
     </div>

@@ -10,25 +10,39 @@
 <div th:replace="fragments/navigation :: nav"></div>
 
 <div class="container mt-4">
-    <div>
+
+    <div class="mb-4">
         <h1 th:if="${action} == 'add'">Add Quiz</h1>
         <h1 th:if="${action} == 'edit'">Edit Quiz</h1>
     </div>
+
     <form id="add-quiz" method="post" th:object="${quiz}" novalidate th:class="${isInvalid} ? 'was-validated' : ''">
+
         <div class="row mb-3">
-            <label th:for="*{title}" class="col-sm-2 col-form-label">Quiz Title</label>
-            <input th:field="*{title}" type="text" class="col-sm-10" id="title" required>
-            <div class="invalid-feedback">Enter a quiz title.</div>
+            <label for="title" class="col-sm-2 col-form-label">Quiz Title:</label>
+            <div class="col-sm-6">
+                <input th:field="*{title}" type="text" class="form-control" id="title" required>
+                <div class="invalid-feedback">Enter a quiz title!</div>
+            </div>
         </div>
 
-        <div class="form-check mb-4">
-            <input class="form-check-input" th:checked="*{live}" type="checkbox" th:field="*{live}">
-            <label class="form-check-label" th:for="*{live}">Mark quiz as live?</label>
+        <div class="row mb-3">
+            <div class="col-sm-6 offset-sm-2">
+                <div class="form-check">
+                    <input class="form-check-input" th:checked="*{live}" type="checkbox" th:field="*{live}" id="live">
+                    <label class="form-check-label" for="live">Mark quiz as live?</label>
+                </div>
+            </div>
         </div>
 
-        <button type="submit" value="Save" class="btn btn-primary">Submit</button>
+        <div class="row">
+            <div class="col-sm-6 offset-sm-2">
+                <button type="submit" value="Save" class="btn btn-primary">Submit</button>
+            </div>
+        </div>
     </form>
 </div>
 
 </body>
+</html>
 </html>

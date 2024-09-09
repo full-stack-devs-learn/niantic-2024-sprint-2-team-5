@@ -122,13 +122,14 @@ public class QuizDao
                     ,quiz.isLive() ? 1 : 0
                     ,quiz.getQuizId());
     }
-    public void deleteQuiz(int quizId)
-    {
-        String sql = """
-                DELETE FROM quiz
-                WHERE quiz_id = ?
-                """;
+    public void deleteQuiz(int quizId) {
 
-        jdbcTemplate.update(sql, quizId);
+        // delete all questions associated with the quiz
+        String deleteQuestionsSql = "DELETE FROM question WHERE quiz_id = ?;";
+        jdbcTemplate.update(deleteQuestionsSql, quizId);
+
+        // Now delete the quiz
+        String deleteQuizSql = "DELETE FROM quiz WHERE quiz_id = ?;";
+        jdbcTemplate.update(deleteQuizSql, quizId);
     }
 }
