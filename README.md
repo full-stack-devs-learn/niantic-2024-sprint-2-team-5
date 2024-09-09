@@ -26,7 +26,6 @@ We used a Trello board to keep track of the tasks we needed to accomplish. This 
 ![img.png](img.png)
 
 ### Trivio Database Diagram
-We also made a diagram of the Trivio Database
 ![img_2.png](img_2.png)
 We started the project by making the DAOs, Models, and Controllers. Once we finished those we started working on getting the "Start Quiz"
 button to work and take you to the first questions. We added a next button to move you to the next question throughout the quiz.
