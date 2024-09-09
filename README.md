@@ -32,7 +32,7 @@ The home page displays a list of available quizzes that users can take. Simply c
 ### 2. Quiz Start Page
 Once a user clicks on a quiz from the home page, they are taken to the quiz start page. Here, you can see the total number of questions for the selected quiz and begin the quiz by pressing the **Start Quiz** button.
 
-![Quiz Start](images/quiz-start.png)
+![Quiz Start](images/start-quiz.png)
 
 **How to use:**
 - Review the total number of questions before starting.
@@ -164,7 +164,7 @@ With more time, I would implement a full quiz management system. Here are the ke
 - **Show Results with Correct Answers**:  
   After users finish taking the quiz, I would show all the questions along with the correct answers and the user’s answers, allowing them to review their performance in detail.
 
-**Interactive Feedback After Each Question**:  
+- **Interactive Feedback After Each Question**:  
   Instead of only showing the results at the end of the quiz, I would add immediate feedback after each question (correct/incorrect answer, explanation, etc.) to make the learning process more engaging.
 
 By implementing these features, the quiz application would not only offer a more robust and flexible experience for users but also allow for better management of quiz content.
