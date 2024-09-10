@@ -93,14 +93,25 @@ when we weren't programming together. When we met again we would explain the cod
 
 ### Dureti
 
-- **Problem**:  
-  The problem was ensuring that the user could see the correct answers immediately after submitting a quiz. We needed a way to retrieve and display these answers dynamically without having to refresh the page or load the entire page again.
+**Problem**:  
+  I needed to create an interactive quiz where:
+- User selections are tracked and stored.
+- Correct answers are counted.
+- A "Next" button appears after a selection, but only if it's not the last question.
 
-- **Approach**:  
-  I decided to create a dedicated backend logic that would handle fetching the correct answers for each quiz. Once the quiz was submitted, a request would be made to the backend to get the correct answers for the specific quiz. On the frontend, JavaScript was used to send this request, retrieve the answers, and then dynamically update the page with the results. This allowed for a smooth and interactive user experience.
+**Approach**:  
+  To solve this, I used:
+- 1. Event Delegation: A single `document.addEventListener` for efficient handling of multiple radio buttons.
+- 2. Dynamic Data**: Using `data-` attributes to capture question and answer IDs.
+- 3. Conditional UI: Display the "Next" button only when appropriate based on user progress.
 
-- **Final Solution**:  
-  The solution was a seamless integration between the backend and frontend. The backend retrieved the correct answers, while the frontend handled user interaction and updated the page with the results. This allowed users to immediately see their results and the correct answers without any page reloads, providing a better overall experience.
+**Final Solution**:  
+  The solution listens for changes in radio button selections, checks if the answer is correct, and updates the user’s score. It stores answers for each question using the question's ID as a key. Additionally, the code dynamically shows the "Next" button based on whether it's the last question or not, ensuring a smooth quiz experience.
+
+**Why It Works**:
+- Efficiency: One event listener handles all radio buttons.
+- Simplicity: Clear logic for tracking answers and updating the UI.
+- Improved UX: The "Next" button only appears when relevant, enhancing usability.
 
 # Code Block Highlight
 
@@ -112,12 +123,7 @@ when we weren't programming together. When we met again we would explain the cod
 
 ![Dureti Code](images/Dureti-code.png)
 
-I'm particularly proud of the code that handles the process of fetching and displaying the correct answers after the quiz is submitted. It represents a clean integration of backend and frontend technologies, ensuring a smooth user experience without needing to reload the page.
-
-- **Why I'm Proud**:  
-  This code efficiently solves the problem of dynamically loading correct answers, uses modern `fetch()` API in JavaScript for handling asynchronous requests, and leverages Spring's backend capabilities to retrieve and filter the correct answers from the database. The whole flow from quiz submission to displaying results is seamless and provides immediate feedback to the user.
-
-This piece of code not only improves the user experience by reducing load times but also represents a clear division of responsibilities between the backend and frontend.
+One block of code I’m particularly proud of is the following event listener in JavaScript. It handles changes in radio button selections during a quiz. It tracks the user’s answers and dynamically displays a “Next” button if applicable. What I’m proud of is how it efficiently handles both the logic for updating the answers and conditionally showing the next button, ensuring a smooth user experience.
 
 ## Retrospective 
 
