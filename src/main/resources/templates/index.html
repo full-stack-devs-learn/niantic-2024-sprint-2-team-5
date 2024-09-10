@@ -10,10 +10,15 @@
 <div class="container mt-4">
     <h1>Available Quizzes</h1>
     <br>
-    <div th:each="quiz : ${quizzes}">
-        <div th:if="${quiz.isLive}">
-            <div>
-                <h2><a th:text="${quiz.title}" th:href="@{/quizzes/{quizId}(quizId=${quiz.quizId})}"></a></h2>
+    <div th:each="quiz : ${quizzes}" class="col-md-4">
+        <div th:if="${quiz.isLive}" class="card">
+            <div class="card-body">
+                <h2 class="card-title">
+                    <a th:text="${quiz.title}" th:href="@{/quizzes/{quizId}(quizId=${quiz.quizId})}"></a>
+                </h2>
+            </div>
+        </div>
+    </div>
             </div>
         </div>
     </div>
