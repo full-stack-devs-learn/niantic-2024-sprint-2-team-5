@@ -1,4 +1,3 @@
-
 body {
     height:100%;
     margin:0;
@@ -27,8 +26,6 @@ body {
     align-items: center;
     justify-content: center;
     border: 7px solid #87CEFA;
-
-
 }
 .card-title {
     font-family: Impact, fantasy;
@@ -37,6 +34,7 @@ body {
 h1 {
     font-family: Impact, fantasy;
     font-size:70px;
+    padding:10px;
 }
 .list-group {
 border: 5px solid #87CEFA;;
