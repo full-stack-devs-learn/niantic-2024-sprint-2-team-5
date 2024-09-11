@@ -116,8 +116,8 @@ when we weren't programming together. When we met again we would explain the cod
 # Code Block Highlight
 
 ## Hannah
-![img_3.png](img_3.png)
-![img_4.png](img_4.png)
+![Hannah code](hannah-code)
+![Hannah code2](hannah-code2)
 
 ## Dureti 
 
