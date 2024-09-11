@@ -11,7 +11,7 @@
 <div class="main-container">
     <h1>Available Quizzes</h1>
     <div class="flex-container">
-        <div th:each="quiz : ${quizzes}" class="card">
+        <div th:each="quiz : ${quizzes}" >
         <div th:if="${quiz.isLive}" class="card">
             <div class="card-body">
                 <h2 class="card-title">

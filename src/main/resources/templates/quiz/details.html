@@ -15,10 +15,10 @@
   </section>
 
 
-  <section class="container mt-5">
+  <section class="container mt-4">
     <div class="d-flex justify-content-between align-items-center mb-3">
       <h2 class="text-secondary">All Questions</h2>
-      <a class="btn btn-success" th:href="@{|/quizzes/${quiz.quizId}/questions/add|}">Add Question</a>
+      <a class="btn btn-outline-primary mt-4" th:href="@{|/quizzes/${quiz.quizId}/questions/add|}">Add Question</a>
     </div>
 
     <div class="list-group">
@@ -29,7 +29,7 @@
         </div>
         <div>
           <a th:href="@{|/quizzes/${question.quizId}/questions/${question.questionId}|}" class="btn btn-outline-primary btn-sm">Details</a>
-          <a th:href="@{|/questions/${question.questionId}/edit|}" class="btn btn-outline-warning btn-sm">Edit</a>
+          <a th:href="@{|/questions/${question.questionId}/edit|}" class="btn btn-outline-light btn-sm">Edit</a>
           <a th:href="@{|/questions/${question.questionId}/delete|}" class="btn btn-outline-danger btn-sm">Delete</a>
         </div>
       </div>
