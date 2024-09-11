@@ -1,27 +1,27 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-
+<head>
 <div th:replace="fragments/head :: head"></div>
 
+</head>
 <body>
 
 <div th:replace="fragments/navigation :: nav"></div>
 
-<div class="container mt-4">
+<div class="main-container">
     <h1>Available Quizzes</h1>
-    <br>
-    <div th:each="quiz : ${quizzes}" class="col-md-4">
+    <div class="flex-container">
+        <div th:each="quiz : ${quizzes}" class="card">
         <div th:if="${quiz.isLive}" class="card">
             <div class="card-body">
                 <h2 class="card-title">
                     <a th:text="${quiz.title}" th:href="@{/quizzes/{quizId}(quizId=${quiz.quizId})}"></a>
                 </h2>
+
             </div>
         </div>
     </div>
             </div>
-        </div>
-    </div>
 </div>
 
 </body>
