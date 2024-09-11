@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<div th:replace="fragments/head :: head"></div>
+
+<body>
+
+<div th:replace="fragments/navigation :: nav"></div>
+
+<div class="container mt-5 p-4 bg-white rounded shadow-sm">
+    <div class="text-center mb-4">
+        <h1 th:if="${action} == 'add'" class="text-primary display-5">Add Question</h1>
+        <h1 th:if="${action} == 'edit'" class="text-primary display-5">Edit Question</h1>
+    </div>
+
+    <form id="add-question" method="post" th:object="${question}">
+
+        <div class="mb-3 row" th:if="${action} == 'add'">
+            <label for="quiz-title" class="col-sm-2 col-form-label fw-bold">Quiz</label>
+            <div class="col-sm-10">
+                <input id="quiz-title" type="text" class="form-control" disabled th:value="${selectedQuizTitle}">
+                <input type="number" hidden th:name="quiz-id" th:id="quiz-id" th:value="${selectedQuizId}">
+            </div>
+        </div>
+
+        <div class="mb-3 row" th:if="${action} == 'edit'">
+            <label for="quiz-select" class="col-sm-2 col-form-label fw-bold">Quiz</label>
+            <div class="col-sm-10">
+                <select name="quiz" class="form-select" th:field="*{quizId}">
+                    <option th:each="quiz:${quizzes}" th:value="${quiz.quizId}" th:text="${quiz.title}"></option>
+                </select>
+            </div>
+        </div>
+
+        <div class="mb-3 row">
+            <label for="question-number" class="col-sm-2 col-form-label fw-bold">Question number</label>
+            <div class="col-sm-10">
+                <input th:field="*{questionNumber}" type="number" min="1" class="form-control" id="question-number">
+            </div>
+        </div>
+
+        <div class="mb-3 row">
+            <label for="question-text" class="col-sm-2 col-form-label fw-bold">Question text</label>
+            <div class="col-sm-10">
+                <input th:field="*{questionText}" type="text" class="form-control" id="question-text">
+            </div>
+        </div>
+
+        <div class="text-center mt-4">
+            <button type="submit" class="btn btn-primary btn-lg" id="submit-btn">Submit</button>
+        </div>
+    </form>
+</div>
+
+</body>
+</html>

@@ -28,7 +28,6 @@
           <a th:href="@{|/quizzes/${question.quizId}/questions/${question.questionId}|}" th:text="${question.questionText}" class="text-decoration-none text-info"></a>
         </div>
         <div>
-          <a th:href="@{|/quizzes/${question.quizId}/questions/${question.questionId}|}" class="btn btn-outline-primary btn-sm">Details</a>
           <a th:href="@{|/questions/${question.questionId}/edit|}" class="btn btn-outline-light btn-sm">Edit</a>
           <a th:href="@{|/questions/${question.questionId}/delete|}" class="btn btn-outline-danger btn-sm">Delete</a>
         </div>

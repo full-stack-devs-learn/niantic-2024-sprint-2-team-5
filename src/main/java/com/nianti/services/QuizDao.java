@@ -124,11 +124,9 @@ public class QuizDao
     }
     public void deleteQuiz(int quizId) {
 
-        // delete all questions associated with the quiz
         String deleteQuestionsSql = "DELETE FROM question WHERE quiz_id = ?;";
         jdbcTemplate.update(deleteQuestionsSql, quizId);
 
-        // Now delete the quiz
         String deleteQuizSql = "DELETE FROM quiz WHERE quiz_id = ?;";
         jdbcTemplate.update(deleteQuizSql, quizId);
     }

@@ -149,4 +149,44 @@ public class QuestionDao {
         return questions;
     }
 
+    public void addQuestion(Question question)
+    {
+        String sql = """
+            INSERT INTO question (quiz_id, question_number, question_text)
+            VALUES (?, ?, ?);
+            """;
+
+        jdbcTemplate.update(sql,
+                question.getQuizId(),
+                question.getQuestionNumber(),
+                question.getQuestionText());
+    }
+
+    public void updateQuestion(Question question)
+    {
+        String sql = """
+            UPDATE question
+            SET quiz_id = ?
+                , question_number = ?
+                , question_text = ?
+            WHERE question_id = ?;
+            """;
+
+        jdbcTemplate.update(sql,
+                question.getQuizId(),
+                question.getQuestionNumber(),
+                question.getQuestionText(),
+                question.getQuestionId());
+    }
+
+    public void deleteQuestion(int questionId)
+    {
+        String sql = """
+            DELETE FROM question
+            WHERE question_id = ?;
+            """;
+
+        jdbcTemplate.update(sql, questionId);
+    }
+
 }
